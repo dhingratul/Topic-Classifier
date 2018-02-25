@@ -14,7 +14,8 @@ Topic Classifier on Ubuntu tech support Logs
 8. glob
 
 # Run
- `jupyter notebook Topic_Modelling.ipynb` to open the Jupyter notebook
+1. Download data from [here](http://dataset.cs.mcgill.ca/ubuntu-corpus-1.0/ubuntu_dialogs.tgz) and unzip into ``dialogs/`` in working directory
+2.  `jupyter notebook Topic_Modelling.ipynb` to open the Jupyter notebook
 
 # Model
 A comparison between LSI, HDP and LDA models using coherence to investigate the coprus of Ubuntu logs, and the predictions using the best model on test set
