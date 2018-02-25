@@ -19,7 +19,7 @@ def preProcess(corpus):
     Input: {corpus}
     -- corpus = corpus from intermediate step of create_data(string)
     Output: {preProcess}
-    -- result = pre-processed corpus 
+    -- result = pre-processed corpus
     Note:
         Please run from within create_data()
     """
@@ -80,7 +80,7 @@ def create_data(files, lemmat):
 def process_texts(texts, stops, bigram_):
     """
     Helper Function to process text by Stopword Removal, Collocation detection and
-    nltk Lemmatization 
+    nltk Lemmatization
     Input: {texts, stops, bigram_}
     -- texts = Tokenized text
     -- stops = NLTK stopword list
@@ -91,7 +91,8 @@ def process_texts(texts, stops, bigram_):
     texts = [[word for word in line if word not in stops] for line in texts]
     texts = [bigram_[line] for line in texts]
     lemmatizer = WordNetLemmatizer()
-    texts = [[word for word in lemmatizer.lemmatize(' '.join(line), pos='v').split()] for line in texts]
+    texts = [[word for word in lemmatizer.lemmatize(
+        ' '.join(line), pos='v').split()] for line in texts]
     return texts
 
 
@@ -111,7 +112,34 @@ def evaluate_bar_graph(coherences, indices):
     return plt
 
 
-def prettyPrint(l):
-    for i in range(len(l)):
-        print '\033[1m' + str(i), ': ', '\033[0m', l[i], "\n"
-        
+def prettyPrint(l, flag=True):
+    """
+    Helper function pretty print list of list
+    Input: {list, flag}
+    -- list = List of List to be printed
+    -- flag ={True, False} Print bold face line numbers in front
+    Output: {void}
+    -- prints output
+    """
+    if flag is True:
+        for i in range(len(l)):
+            print '\033[1m' + str(i), ': ', '\033[0m', l[i], "\n"
+    else:
+        for i in range(len(l)):
+            print l[i],
+
+
+def printTSV(filename):
+    """
+    Helper function  print a tsv file
+    Input: {filename}
+    -- filename = tsv file to be printed
+    Output: {corpus_raw}
+    -- corpus_raw = Last columns of the tsv file as a string
+    """
+    corpus_raw = ""
+    with open(filename) as tsvfile:
+        tsvreader = csv.reader(tsvfile, delimiter="\t")
+        for line in tsvreader:
+            corpus_raw += line[-1]
+    return corpus_raw
