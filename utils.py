@@ -10,6 +10,7 @@ from nltk.stem import WordNetLemmatizer
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+import pprint
 
 
 def preProcess(corpus):
@@ -107,3 +108,10 @@ def evaluate_bar_graph(coherences, indices):
     plt.bar(x, coherences, width=0.2, tick_label=indices, align='center')
     plt.xlabel('Models')
     plt.ylabel('Coherence Value')
+    return plt
+
+
+def prettyPrint(l):
+    for i in range(len(l)):
+        print '\033[1m' + str(i), ': ', '\033[0m', l[i], "\n"
+        
